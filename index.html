@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BestPhones.hu — Prémium telefonok legjobb áron</title>
+    <meta name="description" content="iPhone és Samsung készülékek kedvező áron, gyors szállítással. Rendelés WhatsApp-on vagy e-mailben.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #fff; }
+        
+        /* Header */
+        .header { 
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            padding: 20px 0;
+            border-bottom: 1px solid #222;
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
+        .logo span { color: #00b4d8; }
+        .header-cta { 
+            background: #25D366; color: #fff; padding: 10px 20px; border-radius: 25px;
+            text-decoration: none; font-weight: 600; font-size: 14px; transition: all 0.3s;
+        }
+        .header-cta:hover { background: #128C7E; transform: scale(1.05); }
+        
+        /* Container */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Hero */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: linear-gradient(180deg, #1a1a2e 0%, #0a0a0a 100%);
+        }
+        .hero h1 { font-size: 48px; font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+        .hero h1 span { background: linear-gradient(90deg, #00b4d8, #0077b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 18px; color: #999; max-width: 600px; margin: 0 auto 30px; line-height: 1.6; }
+        .hero-badges { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .badge { background: #1a1a2e; border: 1px solid #333; padding: 10px 20px; border-radius: 30px; font-size: 13px; color: #ccc; }
+        .badge strong { color: #00b4d8; }
+        
+        /* Section title */
+        .section-title { text-align: center; padding: 60px 0 40px; }
+        .section-title h2 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .section-title p { color: #777; font-size: 15px; }
+        .brand-divider { width: 50px; height: 3px; background: #00b4d8; margin: 15px auto 0; }
+        
+        /* Product grid */
+        .products { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 24px; 
+            padding-bottom: 60px;
+        }
+        .product-card {
+            background: #111; border: 1px solid #222; border-radius: 16px;
+            overflow: hidden; transition: all 0.3s;
+        }
+        .product-card:hover { border-color: #00b4d8; transform: translateY(-4px); box-shadow: 0 10px 40px rgba(0,180,216,0.1); }
+        .product-img { 
+            width: 100%; height: 280px; object-fit: contain; 
+            background: #fff; padding: 20px;
+        }
+        .product-info { padding: 20px; }
+        .product-name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+        .product-specs { font-size: 13px; color: #777; margin-bottom: 12px; }
+        .product-price { font-size: 22px; font-weight: 700; color: #00b4d8; margin-bottom: 4px; }
+        .product-price-old { font-size: 13px; color: #555; text-decoration: line-through; }
+        .product-buttons { display: flex; gap: 8px; margin-top: 16px; }
+        .btn-order {
+            flex: 1; padding: 12px; border-radius: 10px; border: none;
+            font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+            cursor: pointer; text-decoration: none; text-align: center; transition: all 0.2s;
+        }
+        .btn-whatsapp { background: #25D366; color: #fff; }
+        .btn-whatsapp:hover { background: #128C7E; }
+        .btn-email { background: #222; color: #fff; border: 1px solid #333; }
+        .btn-email:hover { background: #333; }
+        
+        /* Footer */
+        .footer { 
+            background: #111; border-top: 1px solid #222; padding: 40px 0;
+            text-align: center;
+        }
+        .footer p { color: #555; font-size: 13px; margin-bottom: 8px; }
+        .footer a { color: #00b4d8; text-decoration: none; }
+        .contact-row { display: flex; gap: 30px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+        .contact-item { color: #999; font-size: 14px; }
+        .contact-item strong { color: #fff; }
+        
+        /* CTA banner */
+        .cta-banner { 
+            background: linear-gradient(135deg, #00b4d8, #0077b6); 
+            padding: 50px 20px; text-align: center; 
+        }
+        .cta-banner h2 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+        .cta-banner p { font-size: 16px; opacity: 0.9; margin-bottom: 24px; }
+        .cta-banner .btn-order { 
+            display: inline-block; background: #fff; color: #0077b6; 
+            padding: 14px 32px; font-size: 16px; border-radius: 30px;
+        }
+        .cta-banner .btn-order:hover { transform: scale(1.05); }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .products { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .product-img { height: 200px; }
+            .product-buttons { flex-direction: column; }
+        }
+        @media (max-width: 480px) {
+            .products { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="logo">Best<span>Phones</span>.hu</div>
+        <a href="https://wa.me/36XXXXXXXXX?text=Szia%21%20Érdeklődnék%20egy%20telefon%20iránt." class="header-cta">📱 WhatsApp rendelés</a>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>Prémium telefonok,<br><span>legjobb áron</span></h1>
+        <p>iPhone és Samsung készülékek kedvező áron, gyors szállítással. Rendelj WhatsApp-on vagy e-mailben!</p>
+        <div class="hero-badges">
+            <div class="badge">🚚 <strong>Gyors szállítás</strong></div>
+            <div class="badge">✅ <strong>Garancia</strong></div>
+            <div class="badge">💬 <strong>WhatsApp rendelés</strong></div>
+        </div>
+    </div>
+</section>
+
+<!-- APPLE -->
+<div class="container">
+    <div class="section-title">
+        <h2>🍎 Apple iPhone</h2>
+        <p>A legújabb iPhone modellek raktárról</p>
+        <div class="brand-divider"></div>
+    </div>
+    
+    <div class="products">
+        <!-- iPhone 16 Pro Max -->
+        <div class="product-card">
+            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-deserttitanium?wid=400&hei=400&fmt=jpeg" class="product-img" alt="iPhone 16 Pro Max">
+            <div class="product-info">
+                <div class="product-name">iPhone 16 Pro Max</div>
+                <div class="product-specs">256GB · A18 Pro · 6.9" · 48MP</div>
+                <div class="product-price">589.990 Ft</div>
+                <div class="product-buttons">
+                    <a href="https://wa.me/36XXXXXXXXX?text=Szia!%20Érdekel%20az%20iPhone%2016%20Pro%20Max%20256GB" class="btn-order btn-whatsapp">💬 WhatsApp</a>
+                    <a href="mailto:chiaratosro@proton.me?subject=Rendelés:%20iPhone%2016%20Pro%20Max%20256GB" class="btn-order btn-email">✉️ E-mail</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- iPhone 16 Pro -->
+        <div class="product-card">
+            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-deserttitanium?wid=400&hei=400&fmt=jpeg" class="product-img" alt="iPhone 16 Pro">
+            <div class="product-info">
+                <div class="product-name">iPhone 16 Pro</div>
+                <div class="product-specs">128GB · A18 Pro · 6.3" · 48MP</div>
+                <div class="product-price">449.990 Ft</div>
+                <div class="product-buttons">
+                    <a href="https://wa.me/36XXXXXXXXX?text=Szia!%20Érdekel%20az%20iPhone%2016%20Pro%20128GB" class="btn-order btn-whatsapp">💬 WhatsApp</a>
+                    <a href="mailto:chiaratosro@proton.me?subject=Rendelés:%20iPhone%2016%20Pro%20128GB" class="btn-order btn-email">✉️ E-mail</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- iPhone 16 -->
+        <div class="product-card">
+            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-ultramarine?wid=400&hei=400&fmt=jpeg" class="product-img" alt="iPhone 16">
+            <div class="product-info">
+                <div class="product-name">iPhone 16</div>
+                <div class="product-specs">128GB · A18 · 6.1" · 48MP</div>
+                <div class="product-price">339.990 Ft</div>
+                <div class="product-buttons">
+                    <a href="https://wa.me/36XXXXXXXXX?text=Szia!%20Érdekel%20az%20iPhone%2016%20128GB" class="btn-order btn-whatsapp">💬 WhatsApp</a>
+                    <a href="mailto:chiaratosro@proton.me?subject=Rendelés:%20iPhone%2016%20128GB" class="btn-order btn-email">✉️ E-mail</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- iPhone 16 Plus -->
+        <div class="product-card">
+            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-7inch-ultramarine?wid=400&hei=400&fmt=jpeg" class="product-img" alt="iPhone 16 Plus">
+            <div class="product-info">
+                <div class="product-name">iPhone 16 Plus</div>
+                <div class="product-specs">128GB · A18 · 6.7" · 48MP</div>
+                <div class="product-price">379.990 Ft</div>
+                <div class="product-buttons">
+                    <a href="https://wa.me/36XXXXXXXXX?text=Szia!%20Érdekel%20az%20iPhone%2016%20Plus%20128GB" class="btn-order btn-whatsapp">💬 WhatsApp</a>
+                    <a href="mailto:chiaratosro@proton.me?subject=Rendelés:%20iPhone%2016%20Plus%20128GB" class="btn-order btn-email">✉️ E-mail</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- iPhone 15 Pro Max -->
+        <div class="product-card">
+            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-naturaltitanium?wid=400&hei=400&fmt=jpeg" class="product-img" alt="iPhone 15 Pro Max">
+            <div class="product-info">
+                <div class="product-name">iPhone 15 Pro Max</div>
+                <div class="product-specs">256GB · A17 Pro · 6.7" · 48MP</div>
+                <div class="product-price">489.990 Ft</div>
+                <div class="product-buttons">
+                    <a href="https://wa.me/36XXXXXXXXX?text=Szia!%20Érdekel%20az%20iPhone%2015%20Pro%20Max%20256GB" class="btn-order btn-whatsapp">💬 WhatsApp</a>
+                    <a href="mailto:chiaratosro@proton.me?subject=Rendelés:%20iPhone%2015%20Pro%20Max%20256GB" class="btn-order btn-email">✉️ E-mail</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- iPhone 15 -->
+        <div class="product-card">
+            <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-finish-select-202309-6-1inch-blue?wid=400&hei=400&fmt=jpeg" class="product-img" alt="iPhone 15">
+            <div class="product-info">
+                <div class="product-name">iPhone 15</div>
+                <div class="product-specs">128GB · A16 · 6.1" · 48MP</div>
+                <div class="product-price">249.990 Ft</div>
+                <div class="product-buttons">
+                    <a href="https://wa.me/36XXXXXXXXX?text=Szia!%20Érdekel%20az%20iPhone%2015%20128GB" class="btn-order btn-whatsapp">💬 WhatsApp</a>
+                    <a href="mailto:chiaratosro@proton.me?subject=Rendelés:%20iPhone%2015%20128GB" class="btn-order btn-email">✉️ E-mail</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SAMSUNG -->
+<div class="container">
+    <div class="section-title">
+        <h2>⭐ Samsung Galaxy</h2>
+        <p>A legújabb Galaxy S széria</p>
+        <div class="brand-divider"></div>
+    </div>
+    
+    <div class="products">
+        <!-- Galaxy S25 Ultra -->
+        <div class="product-card">
+            <img src="https://images.samsung.com/is/image/samsung/p6pim/hu/2501/gallery/hu-galaxy-s25-ultra-sm-s938bztdeue-thumb-544572073?$400_400_PNG$" class="product-img" alt="Samsung Galaxy S25 Ultra">
+            <div class="product-info">
+                <div class="product-name">Samsung Galaxy S25 Ultra</div>
+                <div class="product-specs">256GB · Snapdragon 8 Elite · 6.9" · 200MP</div>
+                <div class="product-price">559.990 Ft</div>
+                <div class="product-buttons">
+                    <a href="https://wa.me/36XXXXXXXXX?text=Szia!%20Érdekel%20a%20Samsung%20Galaxy%20S25%20Ultra%20256GB" class="btn-order btn-whatsapp">💬 WhatsApp</a>
+                    <a href="mailto:chiaratosro@proton.me?subject=Rendelés:%20Samsung%20Galaxy%20S25%20Ultra%20256GB" class="btn-order btn-email">✉️ E-mail</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Galaxy S25+ -->
+        <div class="product-card">
+            <img src="https://images.samsung.com/is/image/samsung/p6pim/hu/2501/gallery/hu-galaxy-s25-plus-sm-s936bzkdeue-thumb-544571988?$400_400_PNG$" class="product-img" alt="Samsung Galaxy S25+">
+            <div class="product-info">
+                <div class="product-name">Samsung Galaxy S25+</div>
+                <div class="product-specs">256GB · Snapdragon 8 Elite · 6.7" · 50MP</div>
+                <div class="product-price">419.990 Ft</div>
+                <div class="product-buttons">
+                    <a href="https://wa.me/36XXXXXXXXX?text=Szia!%20Érdekel%20a%20Samsung%20Galaxy%20S25%2B%20256GB" class="btn-order btn-whatsapp">💬 WhatsApp</a>
+                    <a href="mailto:chiaratosro@proton.me?subject=Rendelés:%20Samsung%20Galaxy%20S25+%20256GB" class="btn-order btn-email">✉️ E-mail</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Galaxy S25 -->
+        <div class="product-card">
+            <img src="https://images.samsung.com/is/image/samsung/p6pim/hu/2501/gallery/hu-galaxy-s25-sm-s931bzbdeue-thumb-544571912?$400_400_PNG$" class="product-img" alt="Samsung Galaxy S25">
+            <div class="product-info">
+                <div class="product-name">Samsung Galaxy S25</div>
+                <div class="product-specs">128GB · Snapdragon 8 Elite · 6.2" · 50MP</div>
+                <div class="product-price">299.990 Ft</div>
+                <div class="product-buttons">
+                    <a href="https://wa.me/36XXXXXXXXX?text=Szia!%20Érdekel%20a%20Samsung%20Galaxy%20S25%20128GB" class="btn-order btn-whatsapp">💬 WhatsApp</a>
+                    <a href="mailto:chiaratosro@proton.me?subject=Rendelés:%20Samsung%20Galaxy%20S25%20128GB" class="btn-order btn-email">✉️ E-mail</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Galaxy S24 Ultra -->
+        <div class="product-card">
+            <img src="https://images.samsung.com/is/image/samsung/p6pim/hu/2401/gallery/hu-galaxy-s24-ultra-sm-s928bztdeue-thumb-539573300?$400_400_PNG$" class="product-img" alt="Samsung Galaxy S24 Ultra">
+            <div class="product-info">
+                <div class="product-name">Samsung Galaxy S24 Ultra</div>
+                <div class="product-specs">256GB · Snapdragon 8 Gen 3 · 6.8" · 200MP</div>
+                <div class="product-price">429.990 Ft</div>
+                <div class="product-buttons">
+                    <a href="https://wa.me/36XXXXXXXXX?text=Szia!%20Érdekel%20a%20Samsung%20Galaxy%20S24%20Ultra%20256GB" class="btn-order btn-whatsapp">💬 WhatsApp</a>
+                    <a href="mailto:chiaratosro@proton.me?subject=Rendelés:%20Samsung%20Galaxy%20S24%20Ultra%20256GB" class="btn-order btn-email">✉️ E-mail</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Galaxy S24 -->
+        <div class="product-card">
+            <img src="https://images.samsung.com/is/image/samsung/p6pim/hu/2401/gallery/hu-galaxy-s24-sm-s921bzvdeue-thumb-539573119?$400_400_PNG$" class="product-img" alt="Samsung Galaxy S24">
+            <div class="product-info">
+                <div class="product-name">Samsung Galaxy S24</div>
+                <div class="product-specs">128GB · Exynos 2400 · 6.2" · 50MP</div>
+                <div class="product-price">239.990 Ft</div>
+                <div class="product-buttons">
+                    <a href="https://wa.me/36XXXXXXXXX?text=Szia!%20Érdekel%20a%20Samsung%20Galaxy%20S24%20128GB" class="btn-order btn-whatsapp">💬 WhatsApp</a>
+                    <a href="mailto:chiaratosro@proton.me?subject=Rendelés:%20Samsung%20Galaxy%20S24%20128GB" class="btn-order btn-email">✉️ E-mail</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-banner">
+    <h2>Nem találod amit keresel?</h2>
+    <p>Írj nekünk és bármilyen telefont be tudunk szerezni kedvező áron!</p>
+    <a href="https://wa.me/36XXXXXXXXX?text=Szia!%20Egy%20telefon%20iránt%20érdeklődnék." class="btn-order">💬 Írj WhatsApp-on!</a>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="contact-row">
+            <div class="contact-item">💬 <strong>WhatsApp:</strong> +36 XX XXX XXXX</div>
+            <div class="contact-item">✉️ <strong>E-mail:</strong> chiaratosro@proton.me</div>
+        </div>
+        <p>© 2026 BestPhones.hu — Minden jog fenntartva</p>
+        <p style="margin-top: 4px; font-size: 11px; color: #444;">Az árak tájékoztató jellegűek, a készlet erejéig érvényesek.</p>
+    </div>
+</footer>
+
+</body>
+</html>
